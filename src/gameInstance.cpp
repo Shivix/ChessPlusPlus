@@ -25,7 +25,7 @@ void gameInstance::draw(){
         window.draw(i);
     }
     window.draw(board.boardLine);
-    pawn testPawn{true};
+    pawn testPawn{chessPiece::colour::white};
     window.draw(testPawn.sprite); // TODO: iterate through array of pieces?
     window.display();
 }

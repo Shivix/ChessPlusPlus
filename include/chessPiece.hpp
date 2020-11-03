@@ -6,24 +6,32 @@
 #include <SFML/Graphics/Texture.hpp>
 
 class chessPiece{
+public:
+    enum class colour{
+        white,
+        black
+    };
+
+    const colour colour; // enum?
+
+    sf::RectangleShape sprite{sf::Vector2f(100, 100)};
     
     // load from file unique for each pieces constructor
 
     
     // better ? -> return how piece should change in array. set piece pos based on array pos.
-    
-    [[nodiscard]] virtual bool move() const = 0;
+  
 
 protected:
-    explicit chessPiece(bool isWhite);
+    [[nodiscard]] virtual bool move() const = 0; 
+    
+    explicit chessPiece(enum colour colour);
 
     sf::Texture spriteTexture{};
 
-public:
+private:
     
-    const bool isWhite; // enum?
-
-    sf::RectangleShape sprite{sf::Vector2f(100, 100)};
+    
 };
 
 class pawn : public chessPiece{
@@ -31,7 +39,7 @@ class pawn : public chessPiece{
     [[nodiscard]] bool move() const override;
 
 public:
-    explicit pawn(bool isWhite);
+    explicit pawn(enum colour colour);
 };
 
 

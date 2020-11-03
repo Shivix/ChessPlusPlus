@@ -1,7 +1,7 @@
 #include "../include/chessPiece.hpp"
 
-chessPiece::chessPiece(bool isWhite):
-        isWhite(isWhite){
+chessPiece::chessPiece(enum colour colour):
+        colour(colour){
 
 }
 
@@ -13,10 +13,10 @@ bool pawn::move() const{ // shouldnt need to return where it wants to move to it
     // how to deal with illegal moves? move takes in requested new pos and checks? apply move func. return bool to show  if move valid?
 }
 
-pawn::pawn(bool isWhite):
-    chessPiece(isWhite)
+pawn::pawn(enum colour colour):
+    chessPiece(colour)
 {
-    if(isWhite){
+    if(colour == colour::white){
         spriteTexture.loadFromFile("../sprites/whitePawn.png");
     }
     else{
