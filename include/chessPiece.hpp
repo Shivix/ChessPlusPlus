@@ -9,17 +9,13 @@ class chessPiece{
     
     // load from file unique for each pieces constructor
 
-
-    // move function change pos of sprite?? needs to stay accurate with boards array | maybe return the new pos or representation of its move?
     
+    // better ? -> return how piece should change in array. set piece pos based on array pos.
     
-    virtual void move() const = 0;
+    [[nodiscard]] virtual bool move() const = 0;
 
 protected:
-    explicit chessPiece(bool isWhite):
-    isWhite(isWhite){
-        
-    }
+    explicit chessPiece(bool isWhite);
 
     sf::Texture spriteTexture{};
 
@@ -32,23 +28,10 @@ public:
 
 class pawn : public chessPiece{
 
-    void move() const override{ // return pair to represent how to move through the array? check its a valid move outside of class?
-       
-   }
+    [[nodiscard]] bool move() const override;
 
 public:
-    pawn(bool isWhite):
-    chessPiece(isWhite)
-    {
-        if(isWhite){
-            spriteTexture.loadFromFile("../sprites/whitePawn.png");
-        }
-        else{
-            spriteTexture.loadFromFile("../sprites/blackPawn.png");
-        }
-        sprite.setTexture(&spriteTexture);
-        
-    }
+    explicit pawn(bool isWhite);
 };
 
 
