@@ -16,38 +16,39 @@ class chessPiece{
     virtual void move() const = 0;
 
 protected:
-    chessPiece(bool isWhite):
+    explicit chessPiece(bool isWhite):
     isWhite(isWhite){
         
     }
-    
-    sf::RectangleShape sprite{sf::Vector2f(100, 100)};
+
     sf::Texture spriteTexture{};
 
 public:
     
-    const bool isWhite;
-    
+    const bool isWhite; // enum?
+
+    sf::RectangleShape sprite{sf::Vector2f(100, 100)};
 };
 
 class pawn : public chessPiece{
-    
-   pawn(bool isWhite):
-   chessPiece(isWhite)
-   {
-       if(isWhite){
-           spriteTexture.loadFromFile("../sprites/whitePawn.png");
-       }
-       else{
-           spriteTexture.loadFromFile("../sprites/blackPawn.png");
-       }
-       
-   } 
-    
-   void move() const override{
+
+    void move() const override{ // return pair to represent how to move through the array? check its a valid move outside of class?
        
    }
-    
+
+public:
+    pawn(bool isWhite):
+    chessPiece(isWhite)
+    {
+        if(isWhite){
+            spriteTexture.loadFromFile("../sprites/whitePawn.png");
+        }
+        else{
+            spriteTexture.loadFromFile("../sprites/blackPawn.png");
+        }
+        sprite.setTexture(&spriteTexture);
+        
+    }
 };
 
 
