@@ -26,7 +26,10 @@ protected:
     [[nodiscard]] virtual bool move() const = 0; 
     
     explicit chessPiece(enum colour colour);
-
+    virtual ~chessPiece() = default;
+    chessPiece(const chessPiece&) = delete;
+    chessPiece& operator = (const chessPiece&) = delete;
+    
     sf::Texture spriteTexture{};
 
 private:
