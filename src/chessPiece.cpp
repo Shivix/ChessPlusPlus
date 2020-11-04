@@ -7,12 +7,17 @@ chessPiece::chessPiece(enum colour colour):
 
 
 // ================================================ pawn ===============================================
-bool pawn::move() const{ // shouldnt need to return where it wants to move to it should already know.
+void pawn::applyMove() const{ // shouldnt need to return where it wants to move to it should already know.
     // piece doesnt care care if capture? so check for capture outside class?
     
     // how to show available moves? store possible squares, move them with piece? 
     
     // how to deal with illegal moves? move takes in requested new pos and checks? apply move func. return bool to show  if move valid?
+}
+
+std::vector<std::pair<size_t, size_t>> pawn::getLegalMoves() const{
+    std::vector<std::pair<size_t, size_t>> legalMoves;
+    
 }
 
 pawn::pawn(enum colour colour):
@@ -25,6 +30,6 @@ pawn::pawn(enum colour colour):
     }
     sprite.setTexture(&spriteTexture);
 
-} 
+}
 
 

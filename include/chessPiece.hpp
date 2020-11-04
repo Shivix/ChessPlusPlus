@@ -20,11 +20,13 @@ public:
 
     
     // better ? -> return how piece should change in array. set piece pos based on array pos.
-  
+
+
+    virtual std::vector<std::pair<size_t, size_t>> getLegalMoves() const = 0;
 
 protected:
-    [[nodiscard]] virtual bool move() const = 0; 
-    
+    virtual void applyMove() const = 0;
+
     explicit chessPiece(enum colour colour);
     virtual ~chessPiece() = default;
     chessPiece(const chessPiece&) = delete; // copy ctor and assignment deleted to avoid issues such as splicing
@@ -39,8 +41,10 @@ private:
 
 class pawn : public chessPiece{
 
-    [[nodiscard]] bool move() const override;
-
+    void applyMove() const override;
+    std::vector<std::pair<size_t, size_t>> getLegalMoves() const override;
+    
+    bool isFirstMove{true}; // tracks if the pawn has moved yet to see if it can legally move two squares.
 public:
     explicit pawn(enum colour colour);
 };

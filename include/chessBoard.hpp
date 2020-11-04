@@ -15,6 +15,7 @@ public:
     
     chessBoard();
     
+    void showLegalMoves(size_t, size_t);
 public:
     
     

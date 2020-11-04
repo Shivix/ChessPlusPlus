@@ -13,3 +13,11 @@ chessBoard::chessBoard(){
     boardLine[0].position = sf::Vector2f(800, 800);
     boardLine[1].position = sf::Vector2f(0, 800);
 }
+
+void chessBoard::showLegalMoves(size_t i, size_t j){
+    
+    auto legalMoves = board[i][j]->getLegalMoves();
+    
+    
+    
+}
