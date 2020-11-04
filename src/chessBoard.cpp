@@ -17,7 +17,11 @@ chessBoard::chessBoard(){
 void chessBoard::showLegalMoves(size_t i, size_t j){
     
     auto legalMoves = board[i][j]->getLegalMoves();
-    
+    legalMovesVec.clear();
+    for(size_t index = 0; auto&& possibleMove: legalMoves){
+        legalMovesVec.emplace_back(sf::Vector2f(100, 100));
+        legalMovesVec[index++].setPosition(possibleMove.first, possibleMove.second);
+    }
     
     
 }

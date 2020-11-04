@@ -12,8 +12,11 @@ void gameInstance::run(){
         }
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
+            
+            // find piece in that position
             sf::Mouse::getPosition(window);
+            
+            // draw possible moves for that piece
         }
         draw();
     }
