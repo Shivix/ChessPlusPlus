@@ -1,7 +1,6 @@
 #ifndef CHESS_CHESSBOARD_HPP
 #define CHESS_CHESSBOARD_HPP
 
-
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <memory>
 #include "chessPiece.hpp"

@@ -27,7 +27,7 @@ protected:
     
     explicit chessPiece(enum colour colour);
     virtual ~chessPiece() = default;
-    chessPiece(const chessPiece&) = delete;
+    chessPiece(const chessPiece&) = delete; // copy ctor and assignment deleted to avoid issues such as splicing
     chessPiece& operator = (const chessPiece&) = delete;
     
     sf::Texture spriteTexture{};
