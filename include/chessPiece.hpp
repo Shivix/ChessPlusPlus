@@ -4,6 +4,9 @@
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <memory>
+
+using coordinate = std::pair<size_t, size_t>;
 
 class chessPiece{
 public:
@@ -14,7 +17,7 @@ public:
 
     const colour colour; // enum?
 
-    sf::RectangleShape sprite{sf::Vector2f(100, 100)};
+    sf::RectangleShape sprite{sf::Vector2f{100, 100}};
     
     // load from file unique for each pieces constructor
 
@@ -22,7 +25,7 @@ public:
     // better ? -> return how piece should change in array. set piece pos based on array pos.
 
 
-    virtual std::vector<std::pair<size_t, size_t>> getLegalMoves() const = 0;
+    virtual std::vector<coordinate> getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>, coordinate) const = 0;
 
 protected:
     explicit chessPiece(enum colour colour);
@@ -38,7 +41,7 @@ private:
 };
 
 class pawn : public chessPiece{
-    std::vector<std::pair<size_t, size_t>> getLegalMoves() const override;
+    std::vector<coordinate> getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>, coordinate) const override;
     
     bool isFirstMove{true}; // tracks if the pawn has moved yet to see if it can legally move two squares.
 public:

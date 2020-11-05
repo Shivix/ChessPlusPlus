@@ -8,12 +8,27 @@ chessPiece::chessPiece(enum colour colour):
 
 // ================================================ pawn ===============================================
 
-std::vector<std::pair<size_t, size_t>> pawn::getLegalMoves() const{
-    std::vector<std::pair<size_t, size_t>> legalMoves;
+std::vector<coordinate> pawn::getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8> board, coordinate ownPosition) const{ // have second param bool to check for new scenarios like castling be allowed or pawn able to attack diagonally
+    std::vector<coordinate> legalMoves;
     
-    legalMoves.emplace_back(0, 1);
-    if (isFirstMove){
-        legalMoves.emplace_back(0, 2);
+    const size_t x{ownPosition.first};
+    const size_t y{ownPosition.second};
+    
+    if (colour == colour::white){
+        if (board[x - 1][y] == nullptr){ // checks if the position in front is empty
+            legalMoves.emplace_back(0, 1);
+            if (isFirstMove && board[x - 2][y]){
+                legalMoves.emplace_back(0, 2);
+            }
+        }
+    }
+    else{ // if piece is black
+        if (board[x + 1][y] == nullptr){
+            legalMoves.emplace_back(0, 1);
+            if (isFirstMove && board[x + 2][y]){
+                legalMoves.emplace_back(0, 2);
+            }
+        }
     }
     
     return legalMoves;
