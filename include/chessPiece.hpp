@@ -15,7 +15,7 @@ public:
         black
     };
 
-    const colour colour; // enum?
+    const colour colour;
 
     sf::RectangleShape sprite{sf::Vector2f{100, 100}};
     
@@ -25,11 +25,11 @@ public:
     // better ? -> return how piece should change in array. set piece pos based on array pos.
 
 
-    virtual std::vector<coordinate> getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>, coordinate) const = 0;
+    virtual std::vector<coordinate> getLegalMoves(const std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>&, coordinate) const = 0;
 
+    virtual ~chessPiece() = default;
 protected:
     explicit chessPiece(enum colour colour);
-    virtual ~chessPiece() = default;
     chessPiece(const chessPiece&) = delete; // copy ctor and assignment deleted to avoid issues such as splicing
     chessPiece& operator = (const chessPiece&) = delete;
     
@@ -41,7 +41,7 @@ private:
 };
 
 class pawn : public chessPiece{
-    std::vector<coordinate> getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>, coordinate) const override;
+    std::vector<coordinate> getLegalMoves(const std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>&, coordinate) const override;
     
     bool isFirstMove{true}; // tracks if the pawn has moved yet to see if it can legally move two squares.
 public:

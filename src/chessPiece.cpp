@@ -8,7 +8,7 @@ chessPiece::chessPiece(enum colour colour):
 
 // ================================================ pawn ===============================================
 
-std::vector<coordinate> pawn::getLegalMoves(std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8> board, coordinate ownPosition) const{ // have second param bool to check for new scenarios like castling be allowed or pawn able to attack diagonally
+std::vector<coordinate> pawn::getLegalMoves(const std::array<std::array<std::unique_ptr<chessPiece>, 8>, 8>& board, coordinate ownPosition) const{ // have second param bool to check for new scenarios like castling be allowed or pawn able to attack diagonally
     std::vector<coordinate> legalMoves;
     
     const size_t x{ownPosition.first};
